@@ -5,6 +5,7 @@
   --navy-light: #123a72;
   --blue: #0050c4; /* the logo's actual blue (sampled from "STATE"), used as the primary accent on white/paper backgrounds */
   --blue-light: #eaf1fd;
+  --blue-on-dark: #8ab4ff; /* logo blue is too dark to read on the navy hero; this is the on-dark counterpart */
   --gold: #c08a2e; /* kept only for buttons/accents that sit directly on the navy background — blue-on-navy loses too much contrast there */
   --gold-light: #d9a445;
   --paper: #f7f5f1;
@@ -87,13 +88,16 @@ a { color: var(--navy-light); }
      reflowed the whole page every frame and showed up as header flicker */
 }
 
-/* Homepage-only: a big landing-page logo moment, shrinking to the normal compact
-   header once the visitor scrolls (JS toggles .scrolled in script.js). Other pages
-   never get .header-hero, so they always use the standard logo size above. */
-.site-header.header-hero .header-inner { padding: 34px 24px; }
-.site-header.header-hero .logo img { height: 168px; }
-.site-header.header-hero.scrolled .header-inner { padding: 16px 24px; }
-.site-header.header-hero.scrolled .logo img { height: 84px; }
+/* Homepage-only: a slightly taller header so the logo gets more room on the landing
+   page. Other pages never get .header-hero, so they use the standard size above.
+
+   This deliberately does NOT shrink on scroll any more. The header is sticky, so any
+   change to its height reflows everything below it: with a CSS transition that meant a
+   reflow every frame (visible as flicker), and without one it meant the whole page
+   jumping up ~120px the instant you started scrolling. A header that never changes
+   size has neither problem, and scrolling costs nothing. */
+.site-header.header-hero .header-inner { padding: 22px 24px; }
+.site-header.header-hero .logo img { height: 130px; }
 
 
 .main-nav {
@@ -114,13 +118,13 @@ a { color: var(--navy-light); }
 .main-nav a[aria-current="page"] { color: var(--blue); }
 
 .nav-cta {
-  background: var(--navy);
-  color: var(--white) !important;
+  background: var(--gold);
+  color: var(--navy) !important;
   padding: 10px 18px;
   border-radius: 999px;
   font-size: 0.9rem !important;
 }
-.nav-cta:hover { background: var(--gold); color: var(--navy) !important; }
+.nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
 
 .nav-toggle {
   display: none;
@@ -178,7 +182,7 @@ a { color: var(--navy-light); }
   flex-wrap: wrap;
 }
 .top-bar a { color: #fff; text-decoration: none; }
-.top-bar a:hover { color: var(--gold-light); }
+.top-bar a:hover { color: var(--blue-on-dark); }
 .trust-strip {
   display: flex;
   gap: 16px;
@@ -204,7 +208,7 @@ a { color: var(--navy-light); }
 }
 .hero h1 em {
   font-style: normal;
-  color: var(--gold-light);
+  color: var(--blue-on-dark);
 }
 .hero p.lede {
   font-size: 1.1rem;
@@ -448,7 +452,7 @@ h2.section-title {
 .footer-grid ul { list-style: none; padding: 0; margin: 0; }
 .footer-grid li { margin-bottom: 8px; }
 .footer-grid a { color: #b9c4d3; text-decoration: none; }
-.footer-grid a:hover { color: var(--gold-light); }
+.footer-grid a:hover { color: var(--blue-on-dark); }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.12);
   padding-top: 20px;

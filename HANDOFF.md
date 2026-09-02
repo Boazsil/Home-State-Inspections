@@ -25,8 +25,10 @@ Everything in this folder is the site. Drop it in the repo as-is.
 - The hero badge row on `index.html` was missing a closing `</div>`, which left the hero's
   left column unclosed. Browsers were silently auto-correcting it.
 - Accent colour moved from the placeholder gold to the logo's actual blue (`#0050c4`,
-  sampled from the logo file) for eyebrows, links, checkmarks and card icons. Gold is kept
-  only on the dark navy hero buttons, where blue-on-navy loses too much contrast.
+  sampled from the logo file) for eyebrows, links, checkmarks and card icons. Gold is now
+  reserved strictly for the primary "Schedule an Inspection" action (the hero button and the
+  nav CTA) so it reads as "the button that matters" rather than as a leftover accent.
+  `--blue-on-dark` (`#8ab4ff`) covers the places on navy where the logo blue is too dark.
 
 **Contact form**
 - Now builds a `mailto:` link to boaz@homestateinspects.com on submit, with a plain `mailto`

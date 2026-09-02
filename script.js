@@ -17,32 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Homepage header compacts on scroll.
-  //
-  // This used to flicker. The cause was the CSS transition on the logo's height, not
-  // this handler: height is a layout property, so animating it forced a full page
-  // reflow every frame, which on a long image-heavy page showed up as the header
-  // juddering. That transition is gone and the size change now snaps in one reflow.
-  //
-  // The two thresholds are cheap insurance against the class toggling on and off if
-  // the scroll position ever lands right on the boundary.
-  var heroHeader = document.querySelector('.site-header.header-hero');
-  if (heroHeader) {
-    var SHRINK_AT = 60;
-    var GROW_AT = 20;
-    var updateHeroHeader = function () {
-      var y = window.scrollY;
-      var compact = heroHeader.classList.contains('scrolled');
-      if (!compact && y > SHRINK_AT) {
-        heroHeader.classList.add('scrolled');
-      } else if (compact && y < GROW_AT) {
-        heroHeader.classList.remove('scrolled');
-      }
-    };
-    updateHeroHeader();
-    window.addEventListener('scroll', updateHeroHeader, { passive: true });
-  }
-
   // Quote form: no backend, so this opens the visitor's email client with the
   // details pre-filled to boaz@homestateinspects.com (form's action/enctype
   // attributes cover the no-JS fallback for the same mailto behavior).
