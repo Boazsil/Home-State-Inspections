@@ -70,7 +70,6 @@ a { color: var(--navy-light); }
   padding: 16px 24px;
   max-width: var(--max-width);
   margin: 0 auto;
-  transition: padding 0.25s ease;
 }
 
 .logo {
@@ -81,19 +80,20 @@ a { color: var(--navy-light); }
 }
 
 .logo img {
-  height: 52px;
+  height: 84px;
   width: auto;
   border-radius: 8px;
-  transition: height 0.25s ease;
+  /* deliberately no transition: height is a layout property, so animating it
+     reflowed the whole page every frame and showed up as header flicker */
 }
 
 /* Homepage-only: a big landing-page logo moment, shrinking to the normal compact
    header once the visitor scrolls (JS toggles .scrolled in script.js). Other pages
-   never get .header-hero, so they always use the standard 52px logo above. */
+   never get .header-hero, so they always use the standard logo size above. */
 .site-header.header-hero .header-inner { padding: 34px 24px; }
 .site-header.header-hero .logo img { height: 168px; }
 .site-header.header-hero.scrolled .header-inner { padding: 16px 24px; }
-.site-header.header-hero.scrolled .logo img { height: 64px; }
+.site-header.header-hero.scrolled .logo img { height: 84px; }
 
 
 .main-nav {
