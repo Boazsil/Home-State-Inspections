@@ -550,10 +550,13 @@ h2.section-title {
 
 @media (max-width: 700px) {
   /* Real collapsing, re-enabled now that the desktop safety net above is scoped out. */
-  .svc-group:not([open]) > *:not(summary) { display: none; }
-  .svc-group:not([open])::details-content { content-visibility: hidden; }
+  .svc-group:not([open]) > *:not(summary),
+  .svc-jump:not([open]) > nav.service-pills { display: none; }
+  .svc-group:not([open])::details-content,
+  .svc-jump:not([open])::details-content { content-visibility: hidden; }
 
-  .svc-group > summary {
+  .svc-group > summary,
+  .svc-jump > summary {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -578,7 +581,8 @@ h2.section-title {
   }
 
   /* Chevron, drawn in CSS so the markup stays clean. Rotates when the group opens. */
-  .svc-group > summary::after {
+  .svc-group > summary::after,
+  .svc-jump > summary::after {
     content: "";
     width: 9px;
     height: 9px;
@@ -588,7 +592,8 @@ h2.section-title {
     transition: transform 0.15s ease;
     flex: none;
   }
-  .svc-group[open] > summary::after {
+  .svc-group[open] > summary::after,
+  .svc-jump[open] > summary::after {
     transform: rotate(-135deg) translate(-2px, -2px);
   }
 
@@ -598,10 +603,26 @@ h2.section-title {
     border-bottom: 1px solid #e3e6ec;
   }
 
-  /* The jump dropdown is desktop-only. On a phone the six category bars right below
-     the hero already are the service menu, so a dropdown listing the same 14 links
-     was a second menu doing the first one's job. */
-  .svc-jump { display: none; }
+  /* The services page hero is the light paper background, not the navy one on the
+     homepage, so this bar is dark-on-light. */
+  .svc-jump { margin-top: 18px; }
+  .svc-jump > summary {
+    background: var(--white);
+    border: 1px solid #d8d4c8;
+    border-radius: 8px;
+    color: var(--navy);
+    padding: 13px 16px;
+    justify-content: space-between;
+  }
+  .svc-jump[open] > summary { border-radius: 8px 8px 0 0; border-bottom-color: transparent; }
+  .svc-jump .service-pills {
+    margin: 0;
+    padding: 12px;
+    background: var(--white);
+    border: 1px solid #d8d4c8;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
 
   /* Jump targets have to clear the sticky header, which is shorter on phones. */
   .service-block { scroll-margin-top: 120px; }

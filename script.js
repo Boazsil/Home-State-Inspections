@@ -47,18 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Services page: collapse the categories on phones.
   //
-  // The groups are <details> that ship open, so desktop and the no-JS case get the
-  // old flat page. The jump dropdown is desktop-only now (hidden by CSS on phones),
-  // where the category bars are the service menu. All this does is close the groups
-  // below 700px. The general inspection stays open because it is the service most
-  // visitors came for, and burying it behind a tap would be a step backwards.
+  // The groups and the jump list are <details> that ship open, so desktop and the
+  // no-JS case get the old flat page. All this does is close them below 700px. The
+  // general inspection stays open because it is the service most visitors came for
+  // and burying it behind a tap would be a step backwards.
   //
   // State is only reset when the breakpoint actually changes, not on every resize,
   // so a group the visitor opened stays open while they scroll on a phone (mobile
   // browsers fire resize when the address bar hides).
   var svcGroups = document.querySelectorAll('.svc-group');
+  var svcJump = document.querySelector('.svc-jump');
 
-  if (svcGroups.length) {
+  if (svcGroups.length || svcJump) {
     var phone = window.matchMedia('(max-width: 700px)');
 
     var applyBreakpoint = function () {
@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
       Array.prototype.forEach.call(svcGroups, function (group, i) {
         group.open = narrow ? i === 0 : true;
       });
+      if (svcJump) {
+        svcJump.open = !narrow;
+      }
       // Whatever we just closed may have been holding the anchor the visitor
       // arrived on, so re-open the path to it.
       revealTarget(window.location.hash);
@@ -100,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       history.pushState(null, "", link.getAttribute("href"));
       target.scrollIntoView({ behavior: "smooth" });
+      // On a phone the jump list is covering the page, so get it out of the way.
+      if (svcJump && phone.matches) svcJump.open = false;
     });
 
     window.addEventListener('hashchange', function () {
