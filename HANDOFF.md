@@ -108,3 +108,14 @@ Please don't widen that list without asking Boaz.
 Note this only covers the site's own form. Most bookings go through the ISN scheduler at
 `goisn.net`, which is separate software configured in Boaz's ISN account — its own address
 fields are not controlled from this repo.
+
+## Cache-busting when you change CSS or JS
+
+`style.css` and `script.js` are linked with a `?v=N` query on all seven pages. GitHub Pages
+serves them with `Cache-Control: max-age=600`, so without bumping that number a returning
+visitor can keep using the old file for ten minutes after a deploy — long enough to look
+like the change never shipped. **Bump `N` on every page whenever either file changes:**
+
+```
+sed -i 's/style.css?v=3/style.css?v=4/g; s/script.js?v=3/script.js?v=4/g' *.html
+```
