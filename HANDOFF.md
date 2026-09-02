@@ -38,10 +38,6 @@ Everything in this folder is the site. Drop it in the repo as-is.
 
 ## Please check with Boaz before changing these
 
-- **The drone roof inspection is intentionally disabled.** The section, its nav pill, and a
-  related bullet in the Limited Commercial Roof list are commented out in `services.html` —
-  grep for `DISABLED`. `images/drone-roof.jpg` is already in place so it can be switched on
-  in a single edit. Please don't enable it without asking.
 - **InterNACHI branding was intentionally removed** from this copy. Please don't add it back
   without asking; Boaz will say when.
 - **Warranty figures** on `warranty.html` come from the provider's own documentation.

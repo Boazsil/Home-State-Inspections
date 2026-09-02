@@ -25,7 +25,7 @@ All 13 services now carry a banner photo. Sourcing note: the 5:1 banner crop cut
 
 `pre-listing.jpg` is **marked for replacement** — a "coming soon" real estate sign is wanted there instead of the current market-ready home. Free stock libraries don't carry a usable photo of one, so this is waiting on a real photo. Keep the filename when swapping; there is a note at the markup too.
 
-`drone-roof.jpg` is kept even though nothing visible references it - the commented-out drone section points at it, so enabling that service needs no new asset.
+`drone-roof.jpg` is used by the drone roof inspection section on `services.html`.
 
 ## Logo
 
@@ -47,7 +47,7 @@ All the original open items are filled in:
 - **Service area** — kept the suburb list, reworded to make clear it's not a hard boundary; Ohio-licensed only, so scoped to the Ohio side of Greater Cincinnati.
 - **Services** — 13 services, each its own anchored section on `services.html`: general (thermal imaging folded in as included, not a separate add-on), limited/investigative, pre-listing, pre-listing consultation, investor 5-point, multifamily up to 4 units, sewer scope, mold, contractor work verification, commercial, limited commercial roof, new construction, and pre-drywall.
 
-  Radon testing, drone roof inspection, and pool &amp; spa are deliberately not offered on this site.
+  Radon testing and pool &amp; spa are deliberately not offered on this site.
 - **Warranty programs** — six free third-party programs from Inspector Services Group, summarised on the homepage (`index.html#warranty`) and covered in full on `warranty.html`: the 90-Day Structural &amp; Mechanical warranty, SewerGard, MoldSafe, the 5-year Platinum Roof Protection Plan, RecallChek appliance recall monitoring, and Full Concierge move-in help.
 
   RecallChek and Full Concierge were missing from the site entirely until the provider's fliers were reviewed — RecallChek in particular is a strong differentiator (recall monitoring that continues for as long as the client owns the home).
@@ -58,12 +58,9 @@ All the original open items are filled in:
 
 ## Still worth doing
 
-1. **Drone roof inspection — intentionally disabled.** The FAA Part 107 certificate is shown as a credential (About page paragraph, hero badge on `index.html`), but no drone or aerial service is offered anywhere on the site.
-
-   The service section is written and ready but **commented out** in `services.html` — the full section, its nav pill, and a drone bullet in the Limited Commercial Roof checklist. `images/drone-roof.jpg` is already in place. Grep for `DISABLED` to find all three, and follow the instructions in the block comment. Verified inert: the section does not reach the DOM and no drone text is visible to visitors. Check with Boaz before enabling.
-2. **InterNACHI** — intentionally removed. Check with Boaz before adding it back.
-3. **Reviews/testimonials** — a testimonials section can be added once there are reviews to show.
-4. **Google Business Profile** — not part of this repo, but the highest-leverage thing to set up next: it's what actually shows up in the Google Maps "local pack" for searches like "home inspector Blue Ash." NAP (name/address/phone) must match this site exactly.
+1. **InterNACHI** — intentionally removed. Check with Boaz before adding it back.
+2. **Reviews/testimonials** — a testimonials section can be added once there are reviews to show.
+3. **Google Business Profile** — not part of this repo, but the highest-leverage thing to set up next: it's what actually shows up in the Google Maps "local pack" for searches like "home inspector Blue Ash." NAP (name/address/phone) must match this site exactly.
 
 ## Local preview
 

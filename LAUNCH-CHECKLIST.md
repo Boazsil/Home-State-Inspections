@@ -40,8 +40,9 @@ When that returns only `privacy-policy.html`, this step is done.
 
 ## 2. Confirm the content decisions still hold
 
-- **Drone roof inspection** is commented out in `services.html` (grep `DISABLED`). Only enable
-  it once the equipment is in hand.
+- **Drone roof inspection is live again** as of 2 September 2026, on Boaz's instruction. It is
+  now a normal service section on `services.html`, with its own jump-nav pill and a bullet in
+  the Limited Commercial Roof list.
 - **InterNACHI** branding is absent. Only add it once the membership is active, and use the
   real member number.
 - **`images/pre-listing.jpg`** is marked for replacement — see the note at the markup.
