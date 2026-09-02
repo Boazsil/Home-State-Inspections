@@ -1,4 +1,12 @@
+# PREVIEW ONLY - REMOVE THIS BLOCK BEFORE LAUNCH.
+# While the site is only on the github.io preview URL, search engines are kept out
+# so a preview copy cannot get indexed and compete with the real homestateinspects.com.
+# At launch, replace this whole file with the block below. See LAUNCH-CHECKLIST.md.
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://homestateinspects.com/sitemap.xml
+# --- LAUNCH VERSION (use this once the real domain is live) ---
+# User-agent: *
+# Allow: /
+#
+# Sitemap: https://homestateinspects.com/sitemap.xml

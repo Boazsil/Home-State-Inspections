@@ -46,6 +46,12 @@ Everything in this folder is the site. Drop it in the repo as-is.
   Deductibles differ per programme ($0 on the 90-Day, $300 on SewerGard and MoldSafe, $500
   per leak on the roof plan), so please don't simplify them to a single number.
 
+## Before this goes live
+
+The site is in preview mode - search engines are blocked so the github.io preview cannot get
+indexed against the real domain. **See `LAUNCH-CHECKLIST.md`** - that block must be removed at
+launch or the real site will not appear in Google.
+
 ## Known things still open
 
 1. `images/pre-listing.jpg` is marked for replacement — there's a note at the markup in
