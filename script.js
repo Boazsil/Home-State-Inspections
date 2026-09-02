@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
         'Email: ' + (data.get('email') || ''),
         'Phone: ' + (data.get('phone') || ''),
         'Property address: ' + (data.get('property_address') || ''),
-        'Property state: ' + (data.get('property_state') || '(not given)'),
         'Preferred date: ' + (data.get('preferred_date') || ''),
         '',
         'Message:',
