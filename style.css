@@ -286,6 +286,19 @@ h2.section-title {
 }
 .section-intro { max-width: 62ch; color: var(--ink-soft); margin-bottom: 36px; }
 
+/* On the services page the .eyebrow holds the actual service name ("Sewer Scope"),
+   while the h2 below it holds a marketing line that never names the service. At the
+   shared 0.78rem the name was the smallest text in its own section and easy to scan
+   straight past, so inside a service block it is sized up to read as the title it is.
+   Scoped to .svc-group so it only catches the service sections on services.html - the
+   homepage uses .eyebrow for section labels like "Why Home State", which should stay
+   small. */
+.svc-group .service-block .eyebrow {
+  font-size: 1.05rem;
+  letter-spacing: 0.07em;
+  margin-bottom: 12px;
+}
+
 /* Cards grid */
 .grid {
   display: grid;
@@ -493,6 +506,13 @@ h2.section-title {
 }
 @media (max-width: 860px) {
   .two-col { grid-template-columns: 1fr; }
+  /* Seven of the thirteen service sections put the bullet list before the text so the
+     desktop columns alternate left/right down the page. Once the columns stack, that
+     order drops the bullets above their own service name, where they read as a stray
+     tail on the section before - the drone roof service looked like it had no bullets
+     at all. Sending the list last on the stack fixes every one of them without
+     touching the desktop alternation. */
+  .two-col > .checklist { order: 2; }
 }
 
 /* Services quick-nav (anchor pills to jump to a specific service) */
