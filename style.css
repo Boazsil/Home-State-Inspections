@@ -90,13 +90,11 @@ a { color: var(--navy-light); }
 /* Homepage-only: a big landing-page logo moment, shrinking to the normal compact
    header once the visitor scrolls (JS toggles .scrolled in script.js). Other pages
    never get .header-hero, so they always use the standard 52px logo above. */
-.site-header.header-hero .header-inner { padding: 26px 24px; }
-.site-header.header-hero .logo img { height: 108px; }
+.site-header.header-hero .header-inner { padding: 34px 24px; }
+.site-header.header-hero .logo img { height: 168px; }
 .site-header.header-hero.scrolled .header-inner { padding: 16px 24px; }
-.site-header.header-hero.scrolled .logo img { height: 52px; }
+.site-header.header-hero.scrolled .logo img { height: 64px; }
 
-/* Hero icon — decorative house/inspection line art, used instead of the real logo here since the logo's dark navy doesn't read against the hero's dark navy background */
-.hero-icon { margin-bottom: 18px; }
 
 .main-nav {
   display: flex;
