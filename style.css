@@ -515,8 +515,118 @@ h2.section-title {
 }
 .service-pills a:hover { border-color: var(--blue); color: var(--blue); }
 
-.service-block { scroll-margin-top: 90px; }
+.service-block { scroll-margin-top: 130px; } /* clears the 117px sticky header */
 .service-block + .service-block { margin-top: 8px; }
+
+/* ---- Service categories & the jump disclosure -------------------------------
+   Both are <details>. They ship with the `open` attribute set, so on desktop and
+   with JS off the page renders exactly as it did before: an ungrouped run of
+   sections under a flat pill nav. The summaries are hidden here and only become
+   visible at the phone breakpoint, where script.js closes all of them except the
+   general-inspection group. That is what takes the services page down from about
+   21 phone screens to roughly six, and the 13-pill nav down from half a screen to
+   a single row. */
+.svc-group > summary,
+.svc-jump > summary { display: none; }
+.svc-group > summary::-webkit-details-marker,
+.svc-jump > summary::-webkit-details-marker { display: none; }
+
+/* The 8px gap between sections is set with an adjacent-sibling rule, which stops
+   working across a group boundary. Put it back on the first section of a group. */
+.svc-group + .svc-group > .service-block:first-of-type { margin-top: 8px; }
+
+/* Desktop / no-JS safety net. JS collapses these on phones by clearing the `open`
+   attribute; if that state ever survives into a desktop layout - a resize that
+   misses the media-query event, a restored session, bfcache - the page has to keep
+   showing every service rather than silently swallowing most of itself. Visibility
+   on desktop is therefore decided here, not by the attribute. Chrome hides closed
+   content through the ::details-content pseudo, older engines through display:none
+   on the children, so both are neutralised. The mobile block below re-enables real
+   collapsing behind the media query. */
+.svc-group > *:not(summary) { display: block; }
+.svc-jump > nav.service-pills { display: flex; }
+.svc-group::details-content,
+.svc-jump::details-content { content-visibility: visible; }
+
+@media (max-width: 700px) {
+  /* Real collapsing, re-enabled now that the desktop safety net above is scoped out. */
+  .svc-group:not([open]) > *:not(summary),
+  .svc-jump:not([open]) > nav.service-pills { display: none; }
+  .svc-group:not([open])::details-content,
+  .svc-jump:not([open])::details-content { content-visibility: hidden; }
+
+  .svc-group > summary,
+  .svc-jump > summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--white);
+    border-top: 1px solid #e3e6ec;
+    padding: 16px 20px;
+    /* the chevron is the only thing that moves, so it can be transformed cheaply */
+    -webkit-tap-highlight-color: transparent;
+  }
+  .svc-group > summary:last-child { border-bottom: 1px solid #e3e6ec; }
+
+  .svc-group-name { flex: 1; font-size: 1.02rem; }
+  .svc-group-count {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Chevron, drawn in CSS so the markup stays clean. Rotates when the group opens. */
+  .svc-group > summary::after,
+  .svc-jump > summary::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid var(--blue);
+    border-bottom: 2px solid var(--blue);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.15s ease;
+    flex: none;
+  }
+  .svc-group[open] > summary::after,
+  .svc-jump[open] > summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+
+  /* An open group gets a tinted bar so it reads as the section you are inside. */
+  .svc-group[open] > summary {
+    background: var(--paper);
+    border-bottom: 1px solid #e3e6ec;
+  }
+
+  /* The services page hero is the light paper background, not the navy one on the
+     homepage, so this bar is dark-on-light. */
+  .svc-jump { margin-top: 18px; }
+  .svc-jump > summary {
+    background: var(--white);
+    border: 1px solid #d8d4c8;
+    border-radius: 8px;
+    color: var(--navy);
+    padding: 13px 16px;
+    justify-content: space-between;
+  }
+  .svc-jump[open] > summary { border-radius: 8px 8px 0 0; border-bottom-color: transparent; }
+  .svc-jump .service-pills {
+    margin: 0;
+    padding: 12px;
+    background: var(--white);
+    border: 1px solid #d8d4c8;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* Jump targets have to clear the sticky header, which is shorter on phones. */
+  .service-block { scroll-margin-top: 120px; }
+}
 
 .service-image {
   width: 100%;

@@ -50,7 +50,9 @@
       <p class="breadcrumb"><a href="index.html">Home</a> / Services</p>
       <h1>Home Inspection Services</h1>
       <p>From a full general inspection to the specialty add-ons that catch what a general inspection can't &mdash; all from one Ohio state-licensed inspector.</p>
-      <nav class="service-pills" aria-label="Jump to a service">
+      <details class="svc-jump" open>
+        <summary class="svc-jump-head">Jump to a service</summary>
+        <nav class="service-pills" aria-label="Jump to a service">
         <a href="#general">General Inspection</a>
         <a href="#limited">Limited &amp; Investigative</a>
         <a href="#pre-listing">Pre-Listing</a>
@@ -65,10 +67,16 @@
         <a href="#commercial-roof">Commercial Roof</a>
         <a href="#new-construction">New Construction</a>
         <a href="#pre-drywall">Pre-Drywall</a>
-      </nav>
+        </nav>
+      </details>
     </div>
   </section>
 
+  <details class="svc-group" id="grp-general" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">General home inspection</span>
+      <span class="svc-group-count">1 service</span>
+    </summary>
   <section class="service-block" id="general">
     <div class="container">
       <img class="service-image" src="images/general.jpg" alt="Craftsman bungalow home with a covered front porch" loading="lazy" width="900" height="600">
@@ -147,31 +155,13 @@
     </div>
   </section>
 
-  <section class="section-alt">
-    <div class="container">
-      <p class="eyebrow">The Process</p>
-      <h2 class="section-title">From booking to report</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <div class="card-icon">1</div>
-          <h3>Book online or call</h3>
-          <p>Pick a time that fits your closing timeline &mdash; often same-week.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">2</div>
-          <h3>On-site walkthrough</h3>
-          <p>A full, hands-on inspection of the home's major systems, top to bottom.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">3</div>
-          <h3>Same-day digital report</h3>
-          <p>A clear report with photos, followed by a call to walk through anything important.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="service-block" id="limited">
+  </details>
+  <details class="svc-group" id="grp-buying-selling" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">Buying or selling a home</span>
+      <span class="svc-group-count">3 services</span>
+    </summary>
+  <section class="section-alt service-block" id="limited">
     <div class="container">
       <img class="service-image" src="images/limited.jpg" alt="Close-up of an electrical outlet being inspected by hand" loading="lazy" width="700" height="467">
     </div>
@@ -190,7 +180,7 @@
   </section>
 
 
-  <section class="section-alt service-block" id="pre-listing">
+  <section class="service-block" id="pre-listing">
     <div class="container">
       <!-- STAND-IN: Boaz wants a "coming soon" real estate sign here. No usable free-stock photo of one
            exists (checked Unsplash and Pixabay - only SOLD signs and clip-art graphics). Swap this file
@@ -211,7 +201,7 @@
     </div>
   </section>
 
-  <section class="service-block" id="pre-listing-consult">
+  <section class="section-alt service-block" id="pre-listing-consult">
     <div class="container">
       <img class="service-image" src="images/pre-listing-consult.jpg" alt="Bright, tidy living room in a home being prepared for sale" loading="lazy" width="1200" height="240">
     </div>
@@ -229,7 +219,13 @@
     </div>
   </section>
 
-  <section class="section-alt service-block" id="investor-5-point">
+  </details>
+  <details class="svc-group" id="grp-investors" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">Investors &amp; landlords</span>
+      <span class="svc-group-count">2 services</span>
+    </summary>
+  <section class="service-block" id="investor-5-point">
     <div class="container">
       <img class="service-image" src="images/investor-5-point.jpg" alt="House keys, banknotes and a model house on a desk" loading="lazy" width="1200" height="240">
     </div>
@@ -248,7 +244,7 @@
     </div>
   </section>
 
-  <section class="service-block" id="multifamily">
+  <section class="section-alt service-block" id="multifamily">
     <div class="container">
       <img class="service-image" src="images/multifamily.jpg" alt="Small multifamily apartment building with balconies" loading="lazy" width="1200" height="240">
     </div>
@@ -265,7 +261,13 @@
       </ul>
     </div>
   </section>
-  <section class="section-alt service-block" id="sewer-scope">
+  </details>
+  <details class="svc-group" id="grp-addons" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">Specialty add-ons</span>
+      <span class="svc-group-count">3 services</span>
+    </summary>
+  <section class="service-block" id="sewer-scope">
     <div class="container">
       <img class="service-image" src="images/sewer-scope.jpg" alt="View down the inside of a corrugated drain pipe with water flowing through it" loading="lazy" width="900" height="600">
     </div>
@@ -284,7 +286,7 @@
   </section>
 
 
-  <section class="service-block" id="mold">
+  <section class="section-alt service-block" id="mold">
     <div class="container">
       <img class="service-image" src="images/mold.jpg" alt="Close-up of mold growth on a surface" loading="lazy" width="900" height="600">
     </div>
@@ -303,6 +305,10 @@
   </section>
 
   <!-- ================= DISABLED: DRONE ROOF INSPECTION ==================
+     NOTE: re-enabling this also shifts the alternating section backgrounds. It sits
+     between mold (section-alt) and contractor-verification, so every service from
+     contractor-verification down needs its section-alt class flipped to keep the
+     stripes alternating.
        This service is intentionally not offered at the moment,
        so this section must stay commented out until Boaz says otherwise.
 
@@ -335,7 +341,7 @@
 
 
 
-  <section class="section-alt service-block" id="contractor-verification">
+  <section class="service-block" id="contractor-verification">
     <div class="container">
       <img class="service-image" src="images/contractor-verification.jpg" alt="Close-up of a contractor's tool belt" loading="lazy" width="900" height="600">
     </div>
@@ -354,7 +360,13 @@
     </div>
   </section>
 
-  <section class="service-block" id="commercial">
+  </details>
+  <details class="svc-group" id="grp-commercial" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">Commercial property</span>
+      <span class="svc-group-count">2 services</span>
+    </summary>
+  <section class="section-alt service-block" id="commercial">
     <div class="container">
       <img class="service-image" src="images/commercial.jpg" alt="Modern glass commercial office building" loading="lazy" width="900" height="600">
     </div>
@@ -373,7 +385,7 @@
   </section>
 
 
-  <section class="section-alt service-block" id="commercial-roof">
+  <section class="service-block" id="commercial-roof">
     <div class="container">
       <img class="service-image" src="images/commercial-roof.jpg" alt="Flat commercial rooftop with HVAC units and solar panels" loading="lazy" width="1200" height="240">
     </div>
@@ -391,7 +403,13 @@
       </div>
     </div>
   </section>
-  <section class="service-block" id="new-construction">
+  </details>
+  <details class="svc-group" id="grp-new-construction" open>
+    <summary class="svc-group-head">
+      <span class="svc-group-name">New construction</span>
+      <span class="svc-group-count">2 services</span>
+    </summary>
+  <section class="section-alt service-block" id="new-construction">
     <div class="container">
       <img class="service-image" src="images/new-construction.jpg" alt="Construction worker framing a new house" loading="lazy" width="900" height="600">
     </div>
@@ -410,7 +428,7 @@
   </section>
 
 
-  <section class="section-alt service-block" id="pre-drywall">
+  <section class="service-block" id="pre-drywall">
     <div class="container">
       <img class="service-image" src="images/pre-drywall.jpg" alt="New house interior during framing, with wall studs, pipes, and wiring still exposed" loading="lazy" width="1200" height="240">
     </div>
@@ -427,6 +445,31 @@
       </div>
     </div>
   </section>
+  </details>
+  <section class="section-alt">
+    <div class="container">
+      <p class="eyebrow">The Process</p>
+      <h2 class="section-title">From booking to report</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-icon">1</div>
+          <h3>Book online or call</h3>
+          <p>Pick a time that fits your closing timeline &mdash; often same-week.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">2</div>
+          <h3>On-site walkthrough</h3>
+          <p>A full, hands-on inspection of the home's major systems, top to bottom.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">3</div>
+          <h3>Same-day digital report</h3>
+          <p>A clear report with photos, followed by a call to walk through anything important.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-band">
     <div class="container">
       <h2 class="section-title">Ready to schedule?</h2>

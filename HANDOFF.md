@@ -61,8 +61,11 @@ launch or the real site will not appear in Google.
 2. Service photos are stock (Unsplash, free for commercial use). `thermal-imaging.jpg` is the
    exception — that one is Boaz's own photo. Real inspection photos should replace the stock
    ones over time.
-3. On a phone the services page runs long (~21 screens) and the 13-pill jump nav takes up
-   about half the first screen. Worth grouping into collapsible categories at some point.
+3. The services page is grouped into six collapsible categories on phones (~21 screens of
+   scrolling down to about 8, and the 13-pill jump nav down to a single "Jump to a service"
+   row). See the `.svc-group` notes in `style.css` before changing it: the categories are
+   `<details open>`, and desktop visibility is decided in CSS rather than by that attribute
+   on purpose, so a stale attribute can never blank out the page.
 4. Google Business Profile isn't set up. Not a code task, but it's the highest-leverage thing
    for showing up in local search — NAP needs to match this site exactly.
 
@@ -85,3 +88,16 @@ at it. `sitemap.xml` and `robots.txt` are both current and include the new warra
 `README.md` has the fuller detail on everything above. One note: it's written for Boaz and
 refers to a second folder on his machine (the InterNACHI version) that isn't part of this
 handoff — ignore those references.
+
+## Adding or moving a service
+
+The six categories on `services.html` are `<details class="svc-group">` wrappers around runs
+of adjacent `<section>` elements. To add a service, put its section inside the right wrapper
+and bump the `svc-group-count` text in that group's `<summary>` — the count is written out,
+not calculated. Two things are easy to get wrong:
+
+- The sections alternate `section-alt` for the striped backgrounds. Inserting one in the
+  middle flips every section after it, so re-check the run.
+- Category order is DOM order. Groups only work because each category's services are already
+  next to each other in the file, so moving a service between categories means moving its
+  section too.
