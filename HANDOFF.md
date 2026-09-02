@@ -97,3 +97,14 @@ not calculated. Two things are easy to get wrong:
 - Category order is DOM order. Groups only work because each category's services are already
   next to each other in the file, so moving a service between categories means moving its
   section too.
+
+## Address fields
+
+The quote form on `contact.html` takes the street address and city as free text, and the
+state as a `<select>` offering **Ohio, Indiana and Kentucky only** — the Cincinnati service
+area straddles all three, and an open text field invited enquiries from well outside it.
+Please don't widen that list without asking Boaz.
+
+Note this only covers the site's own form. Most bookings go through the ISN scheduler at
+`goisn.net`, which is separate software configured in Boaz's ISN account — its own address
+fields are not controlled from this repo.
