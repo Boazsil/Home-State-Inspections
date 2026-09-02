@@ -1,0 +1,641 @@
+/* Home State Inspections — shared stylesheet */
+
+:root {
+  --navy: #0b2751; /* matches the real logo's navy, sampled from logo.png */
+  --navy-light: #123a72;
+  --blue: #0050c4; /* the logo's actual blue (sampled from "STATE"), used as the primary accent on white/paper backgrounds */
+  --blue-light: #eaf1fd;
+  --gold: #c08a2e; /* kept only for buttons/accents that sit directly on the navy background — blue-on-navy loses too much contrast there */
+  --gold-light: #d9a445;
+  --paper: #f7f5f1;
+  --white: #ffffff;
+  --ink: #1c1f24;
+  --ink-soft: #4a5160;
+  --border: #e2ded4;
+  --success-bg: #eef6ee;
+  --radius: 10px;
+  --shadow: 0 4px 18px rgba(20, 39, 63, 0.08);
+  --max-width: 1120px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--navy-light); }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--blue);
+  color: var(--white);
+  padding: 10px 16px;
+  z-index: 1000;
+  font-weight: 600;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus { left: 0; }
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  transition: padding 0.25s ease;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+.logo img {
+  height: 52px;
+  width: auto;
+  border-radius: 8px;
+  transition: height 0.25s ease;
+}
+
+/* Homepage-only: a big landing-page logo moment, shrinking to the normal compact
+   header once the visitor scrolls (JS toggles .scrolled in script.js). Other pages
+   never get .header-hero, so they always use the standard 52px logo above. */
+.site-header.header-hero .header-inner { padding: 26px 24px; }
+.site-header.header-hero .logo img { height: 108px; }
+.site-header.header-hero.scrolled .header-inner { padding: 16px 24px; }
+.site-header.header-hero.scrolled .logo img { height: 52px; }
+
+/* Hero icon — decorative house/inspection line art, used instead of the real logo here since the logo's dark navy doesn't read against the hero's dark navy background */
+.hero-icon { margin-bottom: 18px; }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] { color: var(--blue); }
+
+.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem !important;
+}
+.nav-cta:hover { background: var(--gold); color: var(--navy) !important; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  position: relative;
+  transition: 0.2s;
+}
+.nav-toggle span::before { content: ""; position: absolute; top: -6px; }
+.nav-toggle span::after { content: ""; position: absolute; top: 6px; }
+
+@media (max-width: 860px) {
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    display: none;
+    box-shadow: var(--shadow);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 14px 24px; border-top: 1px solid var(--border); }
+  .nav-cta { border-radius: 0; text-align: center; }
+  .nav-toggle { display: block; }
+}
+
+/* Top bar */
+.top-bar {
+  background: var(--navy);
+  color: #cfd8e3;
+  font-size: 0.82rem;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 24px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-bar a { color: #fff; text-decoration: none; }
+.top-bar a:hover { color: var(--gold-light); }
+.trust-strip {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: var(--white);
+  padding: 72px 0 64px;
+}
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold-light);
+}
+.hero p.lede {
+  font-size: 1.1rem;
+  color: #d7dee8;
+  max-width: 46ch;
+  margin: 0 0 28px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.badge-row {
+  display: flex;
+  gap: 22px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.badge-row .badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #e4e9f0;
+}
+.badge svg { flex-shrink: 0; }
+
+.hero-card {
+  background: var(--white);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.hero-card h2 { margin-top: 0; font-size: 1.15rem; color: var(--navy); }
+.hero-card ul { padding-left: 20px; margin: 16px 0; }
+.hero-card li { margin-bottom: 8px; }
+
+@media (max-width: 900px) {
+  .hero .container { grid-template-columns: 1fr; }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.98rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.btn-primary { background: var(--gold); color: var(--navy); }
+.btn-primary:hover { background: var(--gold-light); }
+.btn-outline { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+.btn-navy { background: var(--navy); color: var(--white); }
+.btn-navy:hover { background: var(--navy-light); }
+
+/* Sections */
+section { padding: 64px 0; }
+.section-alt { background: var(--paper); }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 0 0 10px;
+}
+h2.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.section-intro { max-width: 62ch; color: var(--ink-soft); margin-bottom: 36px; }
+
+/* Cards grid */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 860px) {
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.card h3 {
+  margin-top: 0;
+  color: var(--navy);
+  font-size: 1.08rem;
+}
+.card-image {
+  padding: 0;
+  overflow: hidden;
+  height: 200px;
+  align-self: start;
+}
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; margin: 0; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist svg { flex-shrink: 0; margin-top: 3px; color: var(--blue); }
+
+/* CTA band */
+.cta-band {
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+}
+.cta-band h2 { color: var(--white); }
+.cta-band p { color: #d7dee8; max-width: 56ch; margin: 0 auto 26px; }
+
+/* About / bio */
+.bio-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 780px) {
+  .bio-layout { grid-template-columns: 1fr; }
+}
+.bio-portrait {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Placeholder notice (dev-only visual flag, remove before go-live) */
+.todo-flag {
+  background: #fff4e0;
+  border: 1px dashed #c08a2e;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: #6b4d15;
+  margin: 18px 0;
+}
+.todo-flag strong { display: block; margin-bottom: 4px; }
+
+/* Service area list */
+.area-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.area-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.96rem;
+}
+@media (max-width: 700px) {
+  .area-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Contact */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 780px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+.contact-method {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-method:last-child { border-bottom: none; }
+.contact-method .icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(20, 39, 63, 0.06);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-method h3 { margin: 0 0 4px; font-size: 1rem; color: var(--navy); }
+.contact-method a { text-decoration: none; font-weight: 600; }
+
+/* Footer */
+.site-footer {
+  background: var(--navy);
+  color: #b9c4d3;
+  padding: 48px 0 28px;
+  font-size: 0.9rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+@media (max-width: 780px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+.footer-grid h4 {
+  color: var(--white);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
+}
+.footer-grid ul { list-style: none; padding: 0; margin: 0; }
+.footer-grid li { margin-bottom: 8px; }
+.footer-grid a { color: #b9c4d3; text-decoration: none; }
+.footer-grid a:hover { color: var(--gold-light); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.82rem;
+}
+.footer-bottom a { color: #b9c4d3; }
+
+/* Sr-only */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Page hero (interior pages) */
+.page-hero {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 0;
+}
+.page-hero h1 { color: var(--navy); margin: 0 0 10px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.breadcrumb { font-size: 0.85rem; color: var(--ink-soft); }
+.breadcrumb a { color: var(--ink-soft); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+/* Services quick-nav (anchor pills to jump to a specific service) */
+.service-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 0;
+}
+.service-pills a {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.service-pills a:hover { border-color: var(--blue); color: var(--blue); }
+
+.service-block { scroll-margin-top: 90px; }
+.service-block + .service-block { margin-top: 8px; }
+
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  display: block;
+}
+
+/* Credential / association logos (InterNACHI etc.) */
+.cred-logos {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.cred-logos img {
+  height: 68px;
+  width: auto;
+}
+/* On the dark navy hero/footer, give light-background logos a white plate so they don't disappear */
+.cred-logos--on-dark img {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.cred-logos--center { justify-content: center; }
+/* Footer instance sits on navy and should be quieter than the in-page ones */
+.site-footer .cred-logos { margin-top: 18px; }
+.site-footer .cred-logos img { height: 52px; }
+
+/* Inline note (non-placeholder, stays live — e.g. licensing/certification caveats) */
+.note-box {
+  background: var(--blue-light);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 18px 0;
+}
+
+/* ---------- Warranty programs (third-party, via Inspector Services Group) ---------- */
+
+/* Row of partner logos, e.g. under the homepage warranty summary */
+.warranty-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px 44px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.warranty-logos img {
+  height: 34px;
+  width: auto;
+  /* the partner marks are strongly coloured; muting them slightly keeps the row
+     from competing with the page's own navy/blue palette */
+  opacity: 0.85;
+}
+.section-alt .warranty-logos { border-top-color: #ddd8cc; }
+
+/* A warranty program: logo above its own detail card */
+.program {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+}
+.program-logo {
+  height: 40px;
+  width: auto;
+  align-self: flex-start;
+  margin-bottom: 18px;
+}
+.program h3 { margin: 0 0 10px; color: var(--navy); font-size: 1.08rem; }
+.program p { margin: 0 0 14px; }
+.program .limit {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: auto;
+}
+.program .limit strong { color: var(--navy); }
+
+/* Download link list for the partner fliers */
+.doc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.doc-list a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--navy);
+}
+.doc-list a:hover { border-color: var(--blue); color: var(--blue); }
+.doc-list .meta { margin-left: auto; font-weight: 400; font-size: 0.82rem; color: var(--ink-soft); }
+
+/* Link out to the warranty provider's own page for a program */
+.program .provider {
+  font-size: 0.84rem;
+  margin: 0 0 14px;
+}
+.program .provider a { font-weight: 600; }
+
+/* On a phone the service banners are the problem child: the source files are
+   cropped 5:1, so forcing a fixed 200px height into a ~330px-wide column means
+   object-fit has to zoom in and you only ever see the middle third of the photo.
+   Letting them keep a wider ratio on small screens shows much more of the image. */
+@media (max-width: 700px) {
+  .service-image { height: auto; aspect-ratio: 3 / 1; }
+}
