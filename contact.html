@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://homestateinspects.com/contact.html">
 <!-- PREVIEW ONLY - REMOVE BEFORE LAUNCH. Keeps the github.io preview out of Google so it cannot compete with the real homestateinspects.com. See LAUNCH-CHECKLIST.md. -->
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -97,7 +97,16 @@
         <h2 class="section-title">Request a free quote</h2>
         <p class="section-intro">Not ready to pick a time yet? Send a few details and Boaz will follow up with a quote and availability.</p>
 
-        <form id="quote-form" action="mailto:boaz@homestateinspects.com" method="GET" enctype="text/plain">
+        <!-- Submits through FormSubmit, which forwards the entry to Boaz's inbox. This
+             replaced an action="mailto:" form that never actually sent anything - it only
+             opened a draft in the visitor's own email app and relied on them pressing send,
+             which fails silently for anyone without a mail app configured.
+
+             This is a plain form POST with no JavaScript involved, so it still works if a
+             script fails to load. FormSubmit emails Boaz a one-time confirmation link on the
+             very first submission; until that link is clicked, entries are held rather than
+             delivered. -->
+        <form id="quote-form" action="https://formsubmit.co/boaz@homestateinspects.com" method="POST">
           <div style="display:grid; gap:16px;">
             <label>
               <span class="sr-only">Full name</span>
@@ -129,12 +138,21 @@
               <textarea name="message" rows="4" placeholder="Anything else Boaz should know?"
                 style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:8px; font-size:1rem; font-family:inherit;"></textarea>
             </label>
+            <!-- Bots fill hidden fields in; people cannot see this one, so anything that
+                 arrives with it filled is discarded. -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <input type="hidden" name="_subject" value="New quote request — Home State Inspections">
+            <!-- Lay the entry out as a table in the email rather than a wall of text. -->
+            <input type="hidden" name="_template" value="table">
+            <!-- Skip FormSubmit's own captcha screen; the honeypot above covers spam. -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- Where the visitor lands after sending. Absolute URL is required, and it only
+                 resolves once the domain points at this site. -->
+            <input type="hidden" name="_next" value="https://homestateinspects.com/thank-you.html">
             <button type="submit" class="btn btn-primary" style="justify-content:center;">Send Quote Request</button>
           </div>
         </form>
-        <p id="form-status" role="status" style="margin-top:12px; font-weight:600;"></p>
+        <p style="margin-top:14px; color:var(--ink-soft); font-size:0.92rem;">Prefer to talk? Call or text Boaz on <a href="tel:+15132379552">513-237-9552</a>.</p>
       </div>
     </div>
   </section>
@@ -174,6 +192,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>

@@ -31,10 +31,16 @@ Everything in this folder is the site. Drop it in the repo as-is.
   `--blue-on-dark` (`#8ab4ff`) covers the places on navy where the logo blue is too dark.
 
 **Contact form**
-- Now builds a `mailto:` link to boaz@homestateinspects.com on submit, with a plain `mailto`
-  form action as the no-JS fallback. No Formspree account needed. If it should instead land
-  in an inbox without opening the visitor's mail client, that's the point to swap in a form
-  service.
+- Posts to **FormSubmit**, which forwards each entry to boaz@homestateinspects.com. Plain
+  form POST, no JavaScript involved, so it survives a script failing to load.
+- It used to build a `mailto:` link on submit. That was replaced because it sent nothing —
+  it opened a draft in the visitor's own email app and relied on them pressing send, which
+  does nothing at all for anyone without a mail app configured. Those enquiries were lost
+  silently, which is the worst way for a lead form to fail. Please don't revert it.
+- **FormSubmit needs one confirmation click before it delivers anything.** On the first
+  submission it emails Boaz a link; entries are held until he clicks it.
+- `thank-you.html` is where visitors land afterwards, via the form's `_next` field. That
+  field holds an absolute URL, so it only resolves once the real domain is live.
 
 ## Please check with Boaz before changing these
 

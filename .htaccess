@@ -1,8 +1,11 @@
-# Home State Inspections - Apache config for Namecheap cPanel hosting.
+# Home State Inspections - Apache config.
 #
-# Upload this to public_html alongside the site. It does four jobs: forces HTTPS,
-# settles on one canonical hostname, sets cache headers, and blocks the repo's
-# internal files from being served.
+# NOTE: GitHub Pages, where the site is hosted today, ignores this file completely.
+# It only takes effect on ordinary Apache hosting such as a cPanel plan. Kept because
+# it is written and correct, and would apply the moment the site moved to such a host.
+#
+# It does four jobs: forces HTTPS, settles on one canonical hostname, sets cache
+# headers, and blocks the repo internal files from being served.
 
 
 # ---------------------------------------------------------------------------
