@@ -1,6 +1,10 @@
 # Launch checklist
 
-Goal: make **https://homestateinspects.com** show this site.
+**The site went live at https://homestateinspects.com on 3 September 2026.** Steps 1-4 below
+are done and kept as a record of how it was set up. The remaining open items are at the
+bottom.
+
+Original goal: make **https://homestateinspects.com** show this site.
 
 Boaz has the domain name at Namecheap but **no hosting there** — the two Namecheap charges
 in May 2026 ($6.99 and $11.18) were for the domain. He does not need hosting: the site is
@@ -68,38 +72,20 @@ an hour after DNS resolves. Nothing to buy — it is free and renews itself.
 
 Confirm `https://homestateinspects.com` loads with a padlock.
 
-## 4. Remove the search-engine block — **only after steps 1–3 are done**
+## 4. Remove the search-engine block — DONE 3 September 2026
 
-The site has been hidden from Google so the preview could not compete with the real domain
-in search results. Doing this early gets the preview indexed instead; never doing it means
-the real site never appears in Google at all.
+The site went live at https://homestateinspects.com on 3 September 2026 and the block was
+lifted the same day. `robots.txt` now allows crawling and points at the sitemap, and the
+`noindex` tag is gone from the six public pages.
 
-**`robots.txt`** — replace the whole file with:
-
-```
-User-agent: *
-Allow: /
-
-Sitemap: https://homestateinspects.com/sitemap.xml
-```
-
-**These six pages** — delete the `noindex` line and the comment above it from `index.html`,
-`services.html`, `warranty.html`, `service-area.html`, `about.html`, `contact.html`:
-
-```html
-<meta name="robots" content="noindex, nofollow">
-```
-
-**Leave `privacy-policy.html`, `404.html` and `thank-you.html` alone.** Their `noindex` is
-permanent and intentional — none of them belongs in search results.
-
-Check with:
+`privacy-policy.html`, `404.html` and `thank-you.html` keep their `noindex` permanently —
+none of them belongs in search results. If you ever need to check:
 
 ```
 grep -rn "noindex" *.html robots.txt
 ```
 
-When that returns only those three pages, the step is done.
+Only those three should appear.
 
 ## 5. Check it works
 
