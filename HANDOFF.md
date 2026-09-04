@@ -1,6 +1,6 @@
-# Home State Inspections — site handoff
+# Home State Inspections: site handoff
 
-Hi — this is the updated homestateinspects.com site, built on top of the version you
+Hi, this is the updated homestateinspects.com site, built on top of the version you
 originally put together. Same approach you set up: plain static HTML/CSS/JS, no framework,
 no build step, ready for GitHub Pages.
 
@@ -33,8 +33,8 @@ Everything in this folder is the site. Drop it in the repo as-is.
 **Contact form**
 - Posts to **FormSubmit**, which forwards each entry to boaz@homestateinspects.com. Plain
   form POST, no JavaScript involved, so it survives a script failing to load.
-- It used to build a `mailto:` link on submit. That was replaced because it sent nothing —
-  it opened a draft in the visitor's own email app and relied on them pressing send, which
+- It used to build a `mailto:` link on submit. That was replaced because it sent nothing. It
+  opened a draft in the visitor's own email app and relied on them pressing send, which
   does nothing at all for anyone without a mail app configured. Those enquiries were lost
   silently, which is the worst way for a lead form to fail. Please don't revert it.
 - **FormSubmit needs one confirmation click before it delivers anything.** On the first
@@ -58,10 +58,10 @@ launch or the real site will not appear in Google.
 
 ## Known things still open
 
-1. `images/pre-listing.jpg` is marked for replacement — there's a note at the markup in
+1. `images/pre-listing.jpg` is marked for replacement. There is a note at the markup in
    `services.html`. Keep the filename when swapping it.
 2. Service photos are stock (Unsplash, free for commercial use). `thermal-imaging.jpg` is the
-   exception — that one is Boaz's own photo. Real inspection photos should replace the stock
+   exception: that one is Boaz's own photo. Real inspection photos should replace the stock
    ones over time.
 3. The services page is grouped into six collapsible categories on phones (~21 screens of
    scrolling down to about 8, and the 13-pill jump nav down to a single "Jump to a service"
@@ -69,7 +69,7 @@ launch or the real site will not appear in Google.
    `<details open>`, and desktop visibility is decided in CSS rather than by that attribute
    on purpose, so a stale attribute can never blank out the page.
 4. Google Business Profile isn't set up. Not a code task, but it's the highest-leverage thing
-   for showing up in local search — NAP needs to match this site exactly.
+   for showing up in local search, and NAP needs to match this site exactly.
 
 ## Local preview
 
@@ -79,7 +79,7 @@ No build step. Either:
 npx serve .
 ```
 
-or just open `index.html` directly from an extracted folder — the links are all relative, so
+or just open `index.html` directly from an extracted folder, since the links are all relative, so
 it works from the filesystem.
 
 ## Deploying
@@ -89,13 +89,13 @@ at it. `sitemap.xml` and `robots.txt` are both current and include the new warra
 
 `README.md` has the fuller detail on everything above. One note: it's written for Boaz and
 refers to a second folder on his machine (the InterNACHI version) that isn't part of this
-handoff — ignore those references.
+handoff, so ignore those references.
 
 ## Adding or moving a service
 
 The six categories on `services.html` are `<details class="svc-group">` wrappers around runs
 of adjacent `<section>` elements. To add a service, put its section inside the right wrapper
-and bump the `svc-group-count` text in that group's `<summary>` — the count is written out,
+and bump the `svc-group-count` text in that group's `<summary>`. The count is written out,
 not calculated. Two things are easy to get wrong:
 
 - The sections alternate `section-alt` for the striped backgrounds. Inserting one in the
@@ -108,7 +108,7 @@ not calculated. Two things are easy to get wrong:
 
 `style.css` and `script.js` are linked with a `?v=N` query on all seven pages. GitHub Pages
 serves them with `Cache-Control: max-age=600`, so without bumping that number a returning
-visitor can keep using the old file for ten minutes after a deploy — long enough to look
+visitor can keep using the old file for ten minutes after a deploy, long enough to look
 like the change never shipped. **Bump `N` on every page whenever either file changes:**
 
 ```

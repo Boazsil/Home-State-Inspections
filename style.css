@@ -1,4 +1,4 @@
-/* Home State Inspections — shared stylesheet */
+/* Home State Inspections: shared stylesheet */
 
 :root {
   --navy: #0b2751; /* matches the real logo's navy, sampled from logo.png */
@@ -6,7 +6,7 @@
   --blue: #0050c4; /* the logo's actual blue (sampled from "STATE"), used as the primary accent on white/paper backgrounds */
   --blue-light: #eaf1fd;
   --blue-on-dark: #8ab4ff; /* logo blue is too dark to read on the navy hero; this is the on-dark counterpart */
-  --gold: #c08a2e; /* kept only for buttons/accents that sit directly on the navy background — blue-on-navy loses too much contrast there */
+  --gold: #c08a2e; /* kept only for buttons/accents that sit directly on the navy background, since blue-on-navy loses too much contrast there */
   --gold-light: #d9a445;
   --paper: #f7f5f1;
   --white: #ffffff;
@@ -681,7 +681,7 @@ h2.section-title {
 .site-footer .cred-logos { margin-top: 18px; }
 .site-footer .cred-logos img { height: 52px; }
 
-/* Inline note (non-placeholder, stays live — e.g. licensing/certification caveats) */
+/* Inline note (non-placeholder, stays live: e.g. licensing/certification caveats) */
 .note-box {
   background: var(--blue-light);
   border-left: 3px solid var(--blue);
